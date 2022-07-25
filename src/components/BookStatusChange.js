@@ -3,10 +3,10 @@ import React, { useState } from "react";
 const BookStatusChange = (props) => {
     const [value, setValue] = useState(props.shelf)
 
-    const handleChange = ( event) => {
-        const value = event.target;
-        setValue(props.shelf);
-        props.move(props.book, value)
+    const handleChange = event => {
+        const value = event.target.value;
+        setValue(value);
+        props.onMove(props.book, value)
     }
 
     return (
@@ -15,10 +15,10 @@ const BookStatusChange = (props) => {
                <option value="move" disabled>
                  Move to...
                  </option>
-                <option value="currentlyReading">Current Book</option>
-                <option value="wantToRead">Read This</option>
-                <option value="read">Read</option>
-                <option value="none">DO NOHITNG</option>
+                <option defaultValue="currentlyReading">Current Book</option>
+                <option defaultValue="wantToRead">Read This</option>
+                <option defaultValue="read">Read</option>
+                <option defaultValue="none">DO NOHITNG</option>
              </select>
         </div>
     )

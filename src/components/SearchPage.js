@@ -5,18 +5,17 @@ import ShowBookResult from "./ShowBookResult"
 
 const SearchPage = (props) => {
 
-    const {findBooks,books,showSearchPage,showSearch,move} = props;
+    const {findBooks,books,showSearchPage,bookSearching,move} = props;
 
     return (
     <div className="search-books">
           <div className="search-books-bar">
-            <Link to="">
-            <button
-              className="close-search" onClick={showSearchPage}>
+            <Link to="/">
+            <button className="close-search" onClick={bookSearching}>
               Close
             </button>
             </Link>
-            <ShowBookPage showSearch={showSearch} />
+              <ShowBookPage showSearchPage={showSearchPage} />
             </div>
             <ShowBookResult
             findBooks={findBooks}
@@ -24,7 +23,7 @@ const SearchPage = (props) => {
             move={move}
             />
         </div>
-    )
+    );
 }
 
 export default SearchPage;

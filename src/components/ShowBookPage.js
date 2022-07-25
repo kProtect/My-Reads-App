@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 
-const ShowBookPage = () => {
+const ShowBookPage = (props) => {
     const [value, setValue] = useState("");
 
-    const handleChange = (e) => {
-        const v = e.target.v;
-        setValue(v);
-    }
+    const handleChange = event => {
+        const val = event.target.value;
+        setValue(val)
+        props.showSearchPage(val)
+    };
 
     return (
     <div className="search-books-input-wrapper">
@@ -17,7 +18,7 @@ const ShowBookPage = () => {
       onChange={handleChange}
       />
     </div>
-  )
+  );
 }
 
 export default ShowBookPage;

@@ -1,7 +1,7 @@
 import React from "react";
 import BookStatusChage from "./BookStatusChange";
 
-const Book = ({ book, shelf, move}) => {
+const Book = ({ book, move}) => {
     <li>
         <div className="book">
          <div className="book-top">
@@ -13,7 +13,7 @@ const Book = ({ book, shelf, move}) => {
                 backgroundImage:`url(${book.imageLinks? book.imageLinks.thumbnail : 'icons/book-placeholder.svg'})`
                     }}
                     />
-                       <BookStatusChage book={book} shelf={shelf} move={move} />
+                       <BookStatusChage book={book}  move={move} />
                        </div>
                         <div className="book-title">{book.title}</div>
                         <div className="book-authors">
