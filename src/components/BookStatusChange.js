@@ -21,7 +21,7 @@ const BookStatusChange = (props) => {
                 <option defaultValue="none">DO NOHITNG</option>
              </select>
         </div>
-    )
+    );
 }
 
 export default BookStatusChange;

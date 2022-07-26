@@ -1,11 +1,12 @@
 import React from "react";
 import BookStatusChage from "./BookStatusChange";
 
-const Book = ({ book, move}) => {
+const Book = ({ book, shelf, onMove}) => (
+
     <li>
-        <div className="book">
-         <div className="book-top">
-            <div
+       <div className="book">
+        <div className="book-top">
+           <div
                  className="book-cover"
                  style={{
                  width: 128,
@@ -13,14 +14,14 @@ const Book = ({ book, move}) => {
                 backgroundImage:`url(${book.imageLinks? book.imageLinks.thumbnail : 'icons/book-placeholder.svg'})`
                     }}
                     />
-                       <BookStatusChage book={book}  move={move} />
+                       <BookStatusChage book={book} shelf={shelf}  onMove={onMove} />
                        </div>
                         <div className="book-title">{book.title}</div>
                         <div className="book-authors">
                         {book.authors ? book.authors.join(',') : 'No Author'} 
                         </div>
                       </div>
-                    </li>
-};
+            </li>
+);
 
 export default Book;

@@ -5,7 +5,7 @@ import ShowBookResult from "./ShowBookResult"
 
 const SearchPage = (props) => {
 
-    const {findBooks,books,showSearchPage,bookSearching,move} = props;
+    const {searchForBook,books1,showSearchPage,bookSearching,onMove} = props;
 
     return (
     <div className="search-books">
@@ -18,9 +18,9 @@ const SearchPage = (props) => {
               <ShowBookPage showSearchPage={showSearchPage} />
             </div>
             <ShowBookResult
-            findBooks={findBooks}
-            books={books}
-            move={move}
+            searchForBook={searchForBook}
+            books1={books1}
+            onMove={onMove}
             />
         </div>
     );

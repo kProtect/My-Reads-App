@@ -3,11 +3,7 @@ import { Link } from 'react-router-dom';
 import Shelvs from './Shelvs';
 
 const BooksLists = (props) => {
-  const { books, move } = props;
-
-  const cr = books.filter(book => book.shelf === "currenltyReading")
-  const wt = books.filter(book => book.shelf === "wantToRead") 
-  const rr = books.filter(book => book.shelf === "read") 
+  const { readStatus, books, onMove } = props;
 
     return (
       <div className="list-books">
@@ -16,24 +12,14 @@ const BooksLists = (props) => {
         </div>
         <div className="list-books-content">
           <div>
-          <Shelvs
-                name="Currenlty Reading"
-      
-                books={cr}
-                move={move}
+            {readStatus.map(shelf => (
+              <Shelvs
+                key={shelf.key}
+                shelf={shelf}
+                books={books}
+                onMove={onMove}
                 />
-                <Shelvs
-                name="Want To Read"
-              
-                books={wt}
-                move={move}
-                />
-                <Shelvs
-                name="Read"
-                
-                books={rr}
-                move={move}
-                />
+            ))};
           </div>
         </div>
         <div className="open-search">

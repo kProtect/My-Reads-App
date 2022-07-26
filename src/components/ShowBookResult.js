@@ -3,10 +3,10 @@ import Book from "./Book";
 
 const ShowBookResult = props => {
 
-    const { findBooks,books1,move }   = props;
+    const { searchForBook, books1, onMove } = props;
 
-    const refreshBooks = findBooks?.map(book => {
-        books1?.map(b=> {
+    const refreshBooks = searchForBook.map(book => {
+        books1.map(b => {
             if (b.id === book.id) {
                 book.shelf = b.shelf;
             }
@@ -14,17 +14,18 @@ const ShowBookResult = props => {
         });
         return book;
     });
+    
     return (
           <div className="search-books-results">
             <ol className="books-grid">
-                {refreshBooks?.map (book => {
+                {refreshBooks.map(book => (
                     <Book
                     key={book.id}
-                    books={book}
+                    book={book}
                     shelf={book.shelf ? book.shelf : 'none'}
-                    move={move}
+                    onMove={onMove}
                  />
-                })}
+                ))}
             </ol>
           </div>
     );

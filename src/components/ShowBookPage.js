@@ -5,8 +5,8 @@ const ShowBookPage = (props) => {
 
     const handleChange = event => {
         const val = event.target.value;
-        setValue(val)
-        props.showSearchPage(val)
+        setValue( val )
+        props.showSearchPage(val)        
     };
 
     return (

@@ -5,34 +5,40 @@ import "../css/App.css";
 import BooksLists from "./BooksLists";
 import SearchPage from "./SearchPage";
 
-const readstatus = [
+const readStatus = [
   { key: 'currentlyReading', name: 'Currently Reading' },
   { key: 'wantToRead', name: 'Want to Read' },
   { key: 'read', name: 'Read' }
 ];
 
-const App = () => {
-  
-  const [books1, setBooks1] = useState([]);
-  const [searchforBook, setSearchforbook] = useState([])
-
+const MyRead = () => {
+  const [books1, setBooks1] = useState ([]);
+  const [searchForBook, setSearchforbook] = useState ([]);
 
   useEffect(() => {
-    BooksAPI.getAll("bookId")
-    .then( books => {
-      setBooks1([books]);
+    BooksAPI.getAll()
+    .then(books => {
+      setBooks1(books);
     })
-}, [])
+    .catch(err => {
+      console.log(err);
+    });
+  })
 
   const updateBooks = (book, shelf) => {
-    BooksAPI.update(book, shelf);
+    BooksAPI.update(book, shelf).catch(err => {
+      console.log(err)
+    })
     if (shelf === 'none') {
-      setBooks1(book.filter((b) => b.id !== book.id))
+      setBooks1 (() => {
+        return books1.filter((b) => b.id !== book.id)
+      }) 
     } else {
       book.shelf = shelf;
-      setBooks1(book.filter((b) => b.id !== book.id).concat(book))
+      setBooks1(() => {
+        return books1.filter((b) => b.id !== book.id).concat(book)
+      })    
     }
-   
   }
 
 
@@ -42,7 +48,7 @@ const App = () => {
         if (books.error) {
           setSearchforbook([]);
         } else {
-          setSearchforbook([books]);
+          setSearchforbook(books);
         }
       });
     } else {
@@ -57,16 +63,16 @@ const App = () => {
     <Route
       exact
       path="/"
-      element={<BooksLists readstatus={readstatus} books={books1} onMove={updateBooks}/>}
+      element={<BooksLists readStatus={readStatus} books={books1} onMove={updateBooks}/>}
     />
     <Route
       path="/search"
       element={
         <SearchPage
-        searchforBook={searchforBook}
+        searchForBook={searchForBook}
         books1={books1}
         showSearchPage={showSearchPage1}
-        onUpdateBooks={updateBooks}
+        onMove={updateBooks}
       />
       }
     />
@@ -76,4 +82,4 @@ const App = () => {
   }
 
 
-export default App;
+export default MyRead;
