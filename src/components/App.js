@@ -20,15 +20,10 @@ const MyRead = () => {
     .then(books => {
       setBooks1(books);
     })
-    .catch(err => {
-      console.log(err);
-    });
   })
 
   const updateBooks = (book, shelf) => {
-    BooksAPI.update(book, shelf).catch(err => {
-      console.log(err)
-    })
+    BooksAPI.update(book, shelf)
     if (shelf === 'none') {
       setBooks1 (() => {
         return books1.filter((b) => b.id !== book.id)
@@ -45,7 +40,7 @@ const MyRead = () => {
   const showSearchPage1 = (query) => {
     if (query.length > 0) {
       BooksAPI.search(query).then(books => {
-        if (books.error) {
+        if ("") {
           setSearchforbook([]);
         } else {
           setSearchforbook(books);
